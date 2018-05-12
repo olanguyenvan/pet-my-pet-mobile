@@ -2,8 +2,7 @@ import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { Navigable } from '../../types/Navigable';
-import { CareRequestList } from './CareRequestList';
-import { CareRequestProps } from './CareRequestListItem';
+import {default as CareRequestListItem, CareRequestProps} from './CareRequestListItem';
 
 interface State {
   careRequests: CareRequestProps[];
@@ -24,14 +23,30 @@ export default class CareRequestListScreen extends React.Component<Navigable, St
 
   componentDidMount() {
     this.setState({careRequests: [
-      { author:'Klaudia' }
+      {
+        id: 1,
+        author:'Klaudia',
+        startDate: "2018-10-11",
+        endDate: "2018-10-13",
+        pets: ["reksio", "kiciuś"],
+      }
     ]});
   }
 
   render() {
     return (
       <ScrollView style={styles.container}>
-        <CareRequestList careRequests={this.state.careRequests} navigation={this.props.navigation} />
+        {this.state.careRequests.map(
+          careRequest =>
+            <CareRequestListItem
+              key={careRequest.id}
+              id={careRequest.id}
+              author={careRequest.author}
+              startDate={careRequest.startDate}
+              endDate={careRequest.endDate}
+              pets={careRequest.pets}
+            />
+        )}
       </ScrollView>
     );
   }
