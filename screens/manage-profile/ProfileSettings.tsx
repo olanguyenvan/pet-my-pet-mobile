@@ -1,17 +1,17 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text} from 'react-native';
-import { Button} from 'react-native-elements'
+import { ScrollView, StyleSheet, Text } from 'react-native';
+import { Button } from 'react-native-elements'
+import { Navigable } from '../../types/Navigable';
 
 interface AppState {
   name: string;
   pets: any;
 }
 
-interface Props {
-  navigation: any;
+interface Props extends Navigable {
 }
 
-export default class ProfileSettings extends React.Component<Props, AppState > {
+export default class ProfileSettings extends React.Component<Props, AppState> {
   static navigationOptions = {
     title: 'Profile settings',
   };
@@ -38,11 +38,7 @@ export default class ProfileSettings extends React.Component<Props, AppState > {
         <Text>Name: Ola</Text>
         <Text>Surname: NV</Text>
         <Text>Your pets:</Text>
-        <Button title='Add pet'
-                backgroundColor='#138280'
-                onPress={() =>
-                   navigate('AddPetForm', {})
-                }
+        <Button title='Add pet' backgroundColor='#138280' onPress={() => navigate('AddPetForm')}
         />
 
       </ScrollView>
