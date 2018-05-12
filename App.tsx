@@ -27,7 +27,6 @@ export const apolloClient = new ApolloClient({
   },
 });
 
-
 export default class App extends React.Component<AppProps> {
   state = {
     isLoadingComplete: false,

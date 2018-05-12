@@ -1,19 +1,37 @@
 import React from 'react';
 import { Button, ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
-import { MonoText } from '../../components/StyledText';
 import { Navigable } from '../../types/Navigable';
+import  HostOfferList  from './HostOfferList';
+import { HostOfferProps } from './HostOfferListItem';
 
-export default class HostOfferListScreen extends React.Component<Navigable> {
+interface State {
+  hostOffers: HostOfferProps[];
+}
+
+export default class HostOfferListScreen extends React.Component<Navigable, State> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hostOffers: []
+    };
+  }
+
   static navigationOptions = {
     title: 'Host Offers',
   };
 
+  componentDidMount() {
+    this.setState({hostOffers: [
+      { author:'Klaudia' }
+    ]});
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
-        <MonoText>Host Offers!!</MonoText>
-        <Button title="Dummy navigation" onPress={() => this.props.navigation.navigate('Details')}/>
+        <HostOfferList hostOffers={this.state.hostOffers} navigation={this.props.navigation} />
       </ScrollView>
     );
   }
