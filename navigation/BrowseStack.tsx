@@ -11,6 +11,7 @@ import HostOfferListScreen from '../screens/browse/HostOfferListScreen';
 import DetailsScreen from '../screens/browse/Details';
 import CareRequestListScreen from '../screens/browse/CareRequestListScreen';
 import { noHeaderNavigationOptions, tabNavigatorStylings } from './tabNavigatorStylings';
+import MapScreen from '../screens/browse/MapScreen';
 
 const ListTopNavigator = createMaterialTopTabNavigator({
   HostOffers: HostOfferListScreen,
@@ -21,6 +22,7 @@ ListTopNavigator.navigationOptions = noHeaderNavigationOptions;
 
 const BrowseStack = createStackNavigator({
   Home: ListTopNavigator,
+  HostOffersMap: MapScreen,
   Details: DetailsScreen,
 });
 

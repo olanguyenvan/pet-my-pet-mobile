@@ -36,18 +36,19 @@ export default class MapScreen extends React.Component<Navigable, State> {
   }
 
   render() {
+    const markers = this.props.navigation.getParam('offers').map(offer => ({offer, coordinate: randomizeCoordinate()}));
     return (
       <MapView
-        style={{flex: 1}}
+        style={styles.container}
         initialRegion={{
           latitude: 50.0485203,
           longitude: 19.9556348,
-          latitudeDelta: 0.0222,
-          longitudeDelta: 0.0121,
+          latitudeDelta: 0.04,
+          longitudeDelta: 0.02,
         }}
       >
-        {this.state.markers.map(marker => (
-          <Marker key={marker.id} coordinate={marker.coordinate} title={marker.title} description={'Hello'}/>
+        {markers.map(marker => (
+          <Marker key={marker.offer.id} coordinate={marker.coordinate} title={marker.offer.author} description={'Hello'}/>
         ))}
       </MapView>
     );
@@ -61,3 +62,10 @@ const styles = StyleSheet.create({
 });
 
 
+function randomizeCoordinate() {
+  return {latitude: 50.0485203 + miniRand(), longitude: 19.9556348 + miniRand()};
+}
+
+function miniRand() {
+  return Math.random() * 0.01 - 0.005;
+}

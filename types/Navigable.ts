@@ -3,5 +3,6 @@ export interface Navigable {
     navigate: (route: string, props?: any) => any;
     push: (route: string, props?: any) => any;
     goBack: () => any;
+    getParam: Function;
   }
 }
