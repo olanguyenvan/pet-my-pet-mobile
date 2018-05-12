@@ -1,16 +1,16 @@
 {
   "expo": {
     "name": "pet-my-pet-mobile",
-    "description": "This project is really great.",
+    "description": "A very interesting project.",
     "slug": "pet-my-pet-mobile",
     "privacy": "public",
     "sdkVersion": "27.0.0",
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
