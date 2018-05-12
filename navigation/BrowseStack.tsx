@@ -9,6 +9,14 @@ import CareRequestListScreen from '../screens/browse/CareRequestListScreen';
 const ListTopNavigator = createMaterialTopTabNavigator({
   HostOffers: HostOfferListScreen,
   CareRequests: CareRequestListScreen,
+}, {
+  tabBarOptions: {
+    activeTintColor: '#c900ff',
+    inactiveTintColor : '#3b00ff',
+    style: {
+      backgroundColor: '#fff',
+    }
+  },
 });
 
 ListTopNavigator.navigationOptions = {

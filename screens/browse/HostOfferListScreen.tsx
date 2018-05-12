@@ -5,6 +5,9 @@ import { MonoText } from '../../components/StyledText';
 import { Navigable } from '../../types/Navigable';
 
 export default class HostOfferListScreen extends React.Component<Navigable> {
+  static navigationOptions = {
+    title: 'Host Offers',
+  };
 
   render() {
     return (

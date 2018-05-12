@@ -5,6 +5,9 @@ import { MonoText } from '../../components/StyledText';
 import { Navigable } from '../../types/Navigable';
 
 export default class CareRequestListScreen extends React.Component<Navigable> {
+  static navigationOptions = {
+    title: 'Care Requests',
+  };
 
   render() {
     return (
