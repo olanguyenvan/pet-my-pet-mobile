@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "pet-my-pet-mobile",
+    "name": "Pet My Pet",
     "description": "A very interesting project.",
-    "slug": "pet-my-pet-mobile",
+    "slug": "pet-my-pet",
     "privacy": "public",
     "sdkVersion": "27.0.0",
     "platforms": ["ios", "android"],
