@@ -21,7 +21,6 @@ export default class MapScreen extends React.Component<Navigable, State> {
     headerStyle: {
       backgroundColor: '#FE5F75',
     },
-
     headerTintColor: '#fff',
   };
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Text } from 'react-native';
-import { Button, Avatar} from 'react-native-elements'
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Avatar, Button } from 'react-native-elements'
 import { Navigable } from '../../types/Navigable';
-import PetListItem from "./PetListItem";
+import PetListItem from './PetListItem';
 
 interface AppState {
   name: string;
@@ -15,6 +15,10 @@ interface Props extends Navigable {
 export default class ProfileSettings extends React.Component<Props, AppState> {
   static navigationOptions = {
     title: 'Profile settings',
+    headerStyle: {
+      backgroundColor: '#fd7e5a',
+    },
+    headerTintColor: '#fff',
   };
 
   constructor(props) {
@@ -56,11 +60,14 @@ export default class ProfileSettings extends React.Component<Props, AppState> {
               <PetListItem key={pet.name} name={pet.name} petType={pet.petType}/>
             )
           }
-          <Button title='Add pet'
-                  backgroundColor='#138280'
-                  onPress={() =>
-                    navigate('AddPetForm', {})
-                  }
+          <Button
+            title='Add pet'
+            onPress={() => navigate('AddPetForm')}
+            backgroundColor={'#fd7e5a'}
+            fontSize={14}
+            borderRadius={14}
+            buttonStyle={{padding: 10}}
+            containerViewStyle={{marginTop: 15, marginBottom: 15}}
           />
         </View>
       </ScrollView>
