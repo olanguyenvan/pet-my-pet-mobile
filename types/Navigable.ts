@@ -1,6 +1,6 @@
 export interface Navigable {
   navigation: {
-    navigate: Function;
-    push: Function;
+    navigate: (route: string) => any;
+    push: (route: string) => any;
   }
 }
