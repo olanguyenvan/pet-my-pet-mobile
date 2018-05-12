@@ -1,18 +1,52 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
-import { MonoText } from '../../components/StyledText';
 import { Navigable } from '../../types/Navigable';
+import {default as CareRequestListItem, CareRequestProps} from './CareRequestListItem';
 
-export default class CareRequestListScreen extends React.Component<Navigable> {
+interface State {
+  careRequests: CareRequestProps[];
+}
+
+export default class CareRequestListScreen extends React.Component<Navigable, State> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      careRequests: []
+    };
+  }
+
   static navigationOptions = {
     title: 'Care Requests',
   };
 
+  componentDidMount() {
+    this.setState({careRequests: [
+      {
+        id: 1,
+        author:'Klaudia',
+        startDate: "2018-10-11",
+        endDate: "2018-10-13",
+        pets: ["reksio", "kiciuś"],
+      }
+    ]});
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
-        <MonoText>Care Requests</MonoText>
+        {this.state.careRequests.map(
+          careRequest =>
+            <CareRequestListItem
+              key={careRequest.id}
+              id={careRequest.id}
+              author={careRequest.author}
+              startDate={careRequest.startDate}
+              endDate={careRequest.endDate}
+              pets={careRequest.pets}
+            />
+        )}
       </ScrollView>
     );
   }

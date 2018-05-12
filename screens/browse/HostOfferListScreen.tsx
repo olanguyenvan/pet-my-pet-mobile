@@ -1,19 +1,61 @@
 import React from 'react';
-import { Button, ScrollView, StyleSheet } from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
-import { MonoText } from '../../components/StyledText';
 import { Navigable } from '../../types/Navigable';
+import {default as HostOfferListItem, HostOfferProps} from './HostOfferListItem';
 
-export default class HostOfferListScreen extends React.Component<Navigable> {
+interface State {
+  hostOffers: HostOfferProps[];
+}
+
+export default class HostOfferListScreen extends React.Component<Navigable, State> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hostOffers: [],
+    }
+  }
+
   static navigationOptions = {
     title: 'Host Offers',
   };
 
+  componentDidMount() {
+    this.setState({
+      hostOffers: [{
+        id: 1,
+        author: "ola",
+        startDate: "2018-05-10",
+        endDate: "2018-05-11",
+        location: "Rynek Główny, Kraków",
+      },
+      {
+        id: 2,
+        author: "Klaudzia",
+        startDate: "2018-05-15",
+        endDate: "2018-05-16",
+        location: "Prokocim, Kraków",
+      }
+      ]
+    });
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
-        <MonoText>Host Offers!!</MonoText>
-        <Button title="Dummy navigation" onPress={() => this.props.navigation.navigate('Details')}/>
+        <View>
+          { this.state.hostOffers.map(
+            hostOffer => <HostOfferListItem
+              key={hostOffer.id}
+              id={hostOffer.id}
+              author={hostOffer.author}
+              startDate={hostOffer.startDate}
+              endDate={hostOffer.endDate}
+              location={hostOffer.location}
+            />
+          )}
+        </View>
       </ScrollView>
     );
   }
