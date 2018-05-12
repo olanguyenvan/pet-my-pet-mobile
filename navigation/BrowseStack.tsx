@@ -20,7 +20,7 @@ const ListTopNavigator = createMaterialTopTabNavigator({
 });
 
 ListTopNavigator.navigationOptions = {
-  headerStyle: {height: 0},
+  headerStyle: {height: 0, elevation: 0},
 };
 
 const BrowseStack = createStackNavigator({
