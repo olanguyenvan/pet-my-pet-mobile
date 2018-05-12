@@ -12,6 +12,8 @@ const AppNavigator = createSwitchNavigator({
 });
 
 export default class RootNavigation extends React.Component {
+  private _notificationSubscription;
+
   componentDidMount() {
     this._notificationSubscription = this._registerForPushNotifications();
   }

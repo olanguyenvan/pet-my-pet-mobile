@@ -2,7 +2,12 @@ import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
 
-export default class TabBarIcon extends React.Component {
+export interface TabBarIconProps {
+  name: string;
+  focused: boolean;
+}
+
+export default class TabBarIcon extends React.Component<TabBarIconProps> {
   render() {
     return (
       <Ionicons
