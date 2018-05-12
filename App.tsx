@@ -1,6 +1,9 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import {AsyncStorage, Platform, StatusBar, StyleSheet, View} from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
+import ApolloClient from 'apollo-boost'
+import { gql } from 'apollo-boost'
+
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 
@@ -9,12 +12,36 @@ export interface AppProps {
   isLoadingComplete: boolean;
 }
 
+
+export const apolloClient = new ApolloClient({
+  uri: "https://pet-my-pet-server.herokuapp.com/",
+  request: async (operation) => {
+    operation.setContext({
+      headers: {
+        authorization: await AsyncStorage.getItem('token'),
+      }
+    });
+  },
+  onError: ({ graphQLErrors, networkError }) => {
+    console.error(graphQLErrors)
+    console.error(networkError)
+  },
+});
+
+
 export default class App extends React.Component<AppProps> {
   state = {
     isLoadingComplete: false,
   };
 
   render() {
+      apolloClient.query({
+        query: gql`query { hello { name } }`,
+        fetchPolicy: 'network-only'
+      }).then(resp => {
+        console.log("hello: ", resp.data['hello'].name)
+      });
+
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
