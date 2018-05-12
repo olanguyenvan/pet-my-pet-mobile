@@ -31,15 +31,14 @@ export default class CareRequestListItem extends React.Component<CareRequestProp
         />
       </View>
       <View style={{flex: 2, height: 100}}>
-        <Text style={styles.container}>df{this.props.author}</Text>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Icon name={"person"}/><Text style={styles.container}>{this.props.author}</Text>
+         <View style={styles.textWithIcon}>
+          <Icon name={"person"}/><Text style={styles.text}>{this.props.author}</Text>
         </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Icon name={"date-range"}/><Text style={styles.container}>{this.props.startDate} - {this.props.endDate}</Text>
+        <View style={styles.textWithIcon}>
+          <Icon name={"date-range"}/><Text style={styles.text}>{this.props.startDate} - {this.props.endDate}</Text>
         </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Icon name={"pets"}/><Text style={styles.container}>{this.props.pets}</Text>
+        <View style={styles.textWithIcon}>
+          <Icon name={"pets"}/><Text style={styles.text}>{this.props.pets}</Text>
         </View>
       </View>
     </View>
@@ -47,9 +46,16 @@ export default class CareRequestListItem extends React.Component<CareRequestProp
 }
 
 
-const styles = StyleSheet.create({
-  container: {
-    paddingBottom: 5,
-  }
-});
 
+const styles = StyleSheet.create({
+  text: {
+    flex: 1,
+    textAlign: 'left',
+    paddingLeft: 10,
+  },
+  textWithIcon: {
+    flexDirection: 'row',
+    paddingBottom: 5,
+    justifyContent: 'space-between',
+  },
+});

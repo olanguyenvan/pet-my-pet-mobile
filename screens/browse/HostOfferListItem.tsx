@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import {Avatar} from "react-native-elements";
+import {Avatar, Icon} from "react-native-elements";
 
 export interface HostOfferProps{
   id: number;
@@ -32,16 +32,29 @@ export default class HostOfferListItem extends React.Component<HostOfferProps> {
         />
       </View>
       <View style={{flex: 2, height: 100}}>
-        <Text style={styles.container}>{this.props.author}</Text>
-        <Text style={styles.container}>{this.props.startDate} - {this.props.endDate}</Text>
-        <Text style={styles.container}>{this.props.location}</Text>
+        <View style={styles.textWithIcon}>
+          <Icon name={"person"}/><Text style={styles.text}>{this.props.author}</Text>
+        </View>
+        <View style={styles.textWithIcon}>
+          <Icon name={"date-range"}/><Text style={styles.text}>{this.props.startDate} - {this.props.endDate}</Text>
+        </View>
+        <View style={styles.textWithIcon}>
+          <Icon name={"room"}/><Text style={styles.text}>{this.props.location}</Text>
+        </View>
       </View>
     </View>
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  text: {
+    flex: 1,
+    textAlign: 'left',
+    paddingLeft: 10,
+  },
+  textWithIcon: {
+    flexDirection: 'row',
     paddingBottom: 5,
-  }
+    justifyContent: 'space-between',
+  },
 });
