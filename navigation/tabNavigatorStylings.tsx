@@ -29,3 +29,5 @@ export const tabNavigatorStylings = {
 export const noHeaderNavigationOptions = {
   header: null,
 };
+
+//fd7e5a

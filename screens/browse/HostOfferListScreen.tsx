@@ -74,5 +74,6 @@ export default class HostOfferListScreen extends React.Component<Navigable, Stat
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
 });

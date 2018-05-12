@@ -1,8 +1,8 @@
 import React from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
-import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import { ScrollView, StyleSheet } from 'react-native';
+import { Button, FormInput, FormLabel } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
-import {dataPickerStyles} from './DataPickerConfig'
+import { dataPickerStyles } from './DataPickerConfig'
 
 
 interface AppState {
@@ -55,8 +55,13 @@ export default class AddCareRequest extends React.Component<{}, AppState > {
       />
       <Button
         title='Add offer'
-        backgroundColor='#138280'
-        onPress={this.submitForm}/>
+        onPress={this.submitForm}
+        backgroundColor={'#FC9842'}
+        fontSize={14}
+        borderRadius={14}
+        buttonStyle={{padding: 10}}
+        containerViewStyle={{marginTop: 15, marginBottom: 15}}
+        />
     </ScrollView>
   );
   }
