@@ -27,7 +27,7 @@ export default class ProfileSettings extends React.Component<Props, AppState> {
 
   componentDidMount(){
     // TODO: query for pets, mocked objects for now
-    this.setState({pets: [{name: "reksio", petType: "pies"}]})
+    this.setState({pets: [{name: "reksio", petType: "pies"}, {name: "reksio2", petType: "kotek"}]})
   }
 
   render() {
