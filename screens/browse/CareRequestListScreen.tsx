@@ -3,9 +3,11 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { Navigable } from '../../types/Navigable';
 import { CareRequestProps, default as CareRequestListItem } from './CareRequestListItem';
+import gql from "graphql-tag";
+import {apolloClient} from "../../App";
 
 interface State {
-  careRequests: CareRequestProps[];
+  careRequests: any;
 }
 
 export default class CareRequestListScreen extends React.Component<Navigable, State> {
@@ -22,15 +24,20 @@ export default class CareRequestListScreen extends React.Component<Navigable, St
   };
 
   componentDidMount() {
-    this.setState({careRequests: [
-      {
-        id: 1,
-        author:'Klaudia',
-        startDate: "2018-10-11",
-        endDate: "2018-10-13",
-        pets: ["reksio", "kiciuś"],
+    apolloClient.query({
+      query: gql`query { 
+        careRequests{
+          id 
+          start 
+          end 
+        }
+      }`,
+      fetchPolicy: 'network-only'
+    }).then(resp => {
+      if (resp !== null){
+        this.setState({careRequests: resp.data['careRequests']})
       }
-    ]});
+    });
   }
 
   render() {
@@ -41,10 +48,10 @@ export default class CareRequestListScreen extends React.Component<Navigable, St
             <CareRequestListItem
               key={careRequest.id}
               id={careRequest.id}
-              author={careRequest.author}
-              startDate={careRequest.startDate}
-              endDate={careRequest.endDate}
-              pets={careRequest.pets}
+              author={'<author>'}
+              startDate={careRequest.start}
+              endDate={careRequest.end}
+              pets={'<pets>'}
             />
         )}
       </ScrollView>

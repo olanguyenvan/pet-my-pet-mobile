@@ -3,9 +3,11 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Navigable } from '../../types/Navigable';
 import { default as HostOfferListItem, HostOfferProps } from './HostOfferListItem';
+import gql from "graphql-tag";
+import {apolloClient} from "../../App";
 
 interface State {
-  hostOffers: HostOfferProps[];
+  hostOffers: any;
 }
 
 export default class HostOfferListScreen extends React.Component<Navigable, State> {
@@ -22,22 +24,19 @@ export default class HostOfferListScreen extends React.Component<Navigable, Stat
   };
 
   componentDidMount() {
-    this.setState({
-      hostOffers: [{
-        id: 1,
-        author: "ola",
-        startDate: "2018-05-10",
-        endDate: "2018-05-11",
-        location: "Rynek Główny, Kraków",
-      },
-      {
-        id: 2,
-        author: "Klaudzia",
-        startDate: "2018-05-15",
-        endDate: "2018-05-16",
-        location: "Prokocim, Kraków",
+    apolloClient.query({
+      query: gql`query { 
+        hostOffers{
+          id 
+          start 
+          end 
+        }
+      }`,
+      fetchPolicy: 'network-only'
+    }).then(resp => {
+      if (resp !== null){
+        this.setState({hostOffers: resp.data['hostOffers']})
       }
-      ]
     });
   }
 
@@ -59,10 +58,10 @@ export default class HostOfferListScreen extends React.Component<Navigable, Stat
             hostOffer => <HostOfferListItem
               key={hostOffer.id}
               id={hostOffer.id}
-              author={hostOffer.author}
-              startDate={hostOffer.startDate}
-              endDate={hostOffer.endDate}
-              location={hostOffer.location}
+              author={'<author>'}
+              startDate={hostOffer.start}
+              endDate={hostOffer.end}
+              location={'Krakow'}
             />
           )}
         </View>

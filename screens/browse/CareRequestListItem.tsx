@@ -7,7 +7,7 @@ export interface CareRequestProps{
   author: string;
   startDate: string;
   endDate: string;
-  pets: string[];
+  pets: any;
 }
 
 const mockedAnimalAvatarsUrls = [
