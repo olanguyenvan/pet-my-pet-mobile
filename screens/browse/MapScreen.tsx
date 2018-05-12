@@ -19,7 +19,7 @@ export default class MapScreen extends React.Component<Navigable, State> {
   static navigationOptions = {
     title: 'Host Offers Map',
     headerStyle: {
-      backgroundColor: '#c900ff',
+      backgroundColor: '#FE5F75',
     },
 
     headerTintColor: '#fff',
