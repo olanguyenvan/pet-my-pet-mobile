@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Avatar, Button } from 'react-native-elements'
 import { Navigable } from '../../types/Navigable';
 import PetListItem from './PetListItem';
+import { AsyncStorage } from 'react-native';
 
 interface AppState {
   name: string;
@@ -65,9 +66,23 @@ export default class ProfileSettings extends React.Component<Props, AppState> {
             buttonStyle={{padding: 10}}
             containerViewStyle={{marginTop: 15, marginBottom: 15}}
           />
+          <Button
+            title='Logout'
+            onPress={() => this.logout()}
+            backgroundColor={'#333'}
+            fontSize={14}
+            borderRadius={14}
+            buttonStyle={{padding: 10}}
+            containerViewStyle={{marginTop: 30, marginBottom: 15}}
+          />
         </View>
       </ScrollView>
     );
+  }
+
+  logout() {
+    AsyncStorage.removeItem('token');
+    this.props.navigation.navigate('Login');
   }
 }
 

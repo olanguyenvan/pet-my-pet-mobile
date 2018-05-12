@@ -115,13 +115,13 @@ export default class LoginScreen extends React.Component<Navigable, State> {
               borderRadius={14}
               backgroundColor={'#FE5F75'}
               buttonStyle={{padding: 10}}
-              title='Sign in'
+              title='Sign up'
               disabled={this.state.loading} />
           </KeyboardAvoidingView>
 
           <View style={styles.registerLinkContainer}>
             <Text style={styles.registerLink}
-              onPress={() => this.createAccount()}>You need to create account?</Text>
+              onPress={() => this.goLogin()}>I have an account after all</Text>
           </View>
         </View>
       </View>
@@ -137,32 +137,33 @@ export default class LoginScreen extends React.Component<Navigable, State> {
 
     this.setState({loading: true});
     
-    const mutation = gql`mutation Login($email: String!, $password: String!) { login(email: $email, password: $password) }`;
+    const mutation = gql`
+    mutation Register($firstname: String!, $lastname: String!, $email: String!, $password: String!) {
+        register(user: {firstname: $firstname, lastname: $lastname, email: $email, password: $password}) {
+            id
+        }
+    }`;
 
     try {
       const response = await apolloClient.mutate({
         mutation,
-        variables: {email: this.state.email, password: this.state.password},
+        variables: {
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          email: this.state.email,
+          password: this.state.password
+        },
       });
 
-      if (!response || !response.data) {
-        this.setState({loading: false});
-        Alert.alert('Authentication error', 'Invalid credentials');
-        return;
-      }
-
-      const token = response.data.login;
-
-      AsyncStorage.setItem('token', token)
-      this.props.navigation.navigate('Main');
+      this.props.navigation.navigate('Login');
     } catch (e) {
-      Alert.alert('Authentication error', e.message);
+      Alert.alert('Error', e.message);
       this.setState({loading: false});
     }
   }
 
-  createAccount () {
-    this.props.navigation.navigate('Register');
+  goLogin () {
+    this.props.navigation.navigate('Login');
   }
 }
 
