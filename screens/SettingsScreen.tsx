@@ -1,12 +1,12 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
-import ProfileSettings from "./manage-profile/ProfileSettings";
+import ProfileSettings from './manage-profile/ProfileSettings';
+import { Navigable } from '../types/Navigable';
 
-interface Props {
-  navigation: any;
+interface SettingsScreenProps extends Navigable {
 }
 
-export default class SettingsScreen extends React.Component<Props, {} > {
+export default class SettingsScreen extends React.Component<SettingsScreenProps> {
   static navigationOptions = {
     title: 'Profile settings',
   };
