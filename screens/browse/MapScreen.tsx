@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { Navigable } from '../../types/Navigable';
 import { MapView } from 'expo';
-import { Marker } from 'react-native-maps';
+import { Callout, Marker } from 'react-native-maps';
+import HostOfferListItem from './HostOfferListItem';
 
 declare module 'expo' {
   export const MapView: any;
@@ -16,7 +17,12 @@ interface State {
 
 export default class MapScreen extends React.Component<Navigable, State> {
   static navigationOptions = {
-    title: 'Map',
+    title: 'Host Offers Map',
+    headerStyle: {
+      backgroundColor: '#c900ff',
+    },
+
+    headerTintColor: '#fff',
   };
 
   constructor(props) {
@@ -48,7 +54,11 @@ export default class MapScreen extends React.Component<Navigable, State> {
         }}
       >
         {markers.map(marker => (
-          <Marker key={marker.offer.id} coordinate={marker.coordinate} title={marker.offer.author} description={'Hello'}/>
+          <Marker key={marker.offer.id} coordinate={marker.coordinate}>
+            <Callout>
+              <HostOfferListItem {...marker.offer} showAvatar={false}/>
+            </Callout>
+          </Marker>
         ))}
       </MapView>
     );
