@@ -1,8 +1,7 @@
 import React from 'react';
-import {AsyncStorage, Platform, StatusBar, StyleSheet, View} from 'react-native';
+import { AsyncStorage, Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
-import ApolloClient from 'apollo-boost'
-import { gql } from 'apollo-boost'
+import ApolloClient, { gql } from 'apollo-boost'
 
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
@@ -77,8 +76,6 @@ export default class App extends React.Component<AppProps> {
   };
 
   _handleLoadingError = error => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
     console.warn(error);
   };
 

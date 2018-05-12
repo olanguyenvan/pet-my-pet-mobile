@@ -1,29 +1,36 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createBottomTabNavigator, createMaterialTopTabNavigator, createStackNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import AddPetForm from "../screens/manage-profile/AddPetForm";
+import DetailsScreen from '../screens/browse/Details';
+import CareRequestListScreen from '../screens/browse/CareRequestListScreen';
+import HostOfferListScreen from '../screens/browse/HostOfferListScreen';
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+
+const ListTopNavigator = createMaterialTopTabNavigator({
+  HostOffers: HostOfferListScreen,
+  CareRequests: CareRequestListScreen,
 });
 
-HomeStack.navigationOptions = {
+ListTopNavigator.navigationOptions = {
+  headerStyle: {height: 0},
+};
+
+const BrowseStack = createStackNavigator({
+  Home: ListTopNavigator,
+  Details: DetailsScreen,
+});
+
+BrowseStack.navigationOptions = {
+  title: 'Lol',
   tabBarLabel: 'Browse',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
+  tabBarIcon: ({focused}) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? `ios-list` : 'md-list'}/>
   ),
 };
 
@@ -33,11 +40,8 @@ const LinksStack = createStackNavigator({
 
 LinksStack.navigationOptions = {
   tabBarLabel: 'Add',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
-    />
+  tabBarIcon: ({focused}) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? `ios-add-circle` : 'md-add-circle'}/>
   ),
 };
 
@@ -48,16 +52,13 @@ const SettingsStack = createStackNavigator({
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
-    />
+  tabBarIcon: ({focused}) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? `ios-options` : 'md-options'}/>
   ),
 };
 
 export default createBottomTabNavigator({
-  HomeStack,
+  BrowseStack,
   LinksStack,
   SettingsStack,
 });
