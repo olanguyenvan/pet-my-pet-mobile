@@ -2,6 +2,7 @@ import React from 'react';
 import {ScrollView, StyleSheet, Text} from 'react-native';
 import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
+import {dataPickerStyles} from './DataPickerConfig'
 
 interface AppState {
   petType: string,
@@ -34,24 +35,6 @@ export default class AddHostOffer extends React.Component<{}, AppState > {
   }
 
   render() {
-    const dataPickerStyles = {
-      style:{width: 200},
-      mode: "date",
-      format:"YYYY-MM-DD",
-      confirmBtnText:"Confirm",
-      cancelBtnText:"Cancel",
-      customStyles: {
-        dateIcon: {
-          position: 'absolute',
-          left: 0,
-          top: 4,
-          marginLeft: 15
-        },
-        dateInput: {
-          marginLeft: 50
-        }
-      },
-    };
 
     return (
       <ScrollView style={styles.container}>

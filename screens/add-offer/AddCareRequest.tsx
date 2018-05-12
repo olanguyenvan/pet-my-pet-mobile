@@ -1,11 +1,14 @@
 import React from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import DatePicker from 'react-native-datepicker'
+import {dataPickerStyles} from './DataPickerConfig'
+
 
 interface AppState {
   pet: string,
-  fromDate: any,
-  toDate: any,
+  startDate: string,
+  endDate: string,
 }
 
 
@@ -16,17 +19,19 @@ export default class AddCareRequest extends React.Component<{}, AppState > {
 
   constructor(props){
     super(props);
+    let today = new Date().toISOString().split('T')[0];
+
     this.state = {
       pet: null,
-      fromDate: null,
-      toDate: null,
+      startDate: today,
+      endDate: today,
     };
     this.submitForm = this.submitForm.bind(this)
   }
 
   submitForm(){
     // TODO: api call to create offer
-    console.log(this.state.pet, this.state.fromDate, this.state.toDate)
+    console.log(this.state.pet, this.state.startDate, this.state.endDate)
     // console.log(this.state.petName, this.state.petType)
   }
 
@@ -37,13 +42,21 @@ export default class AddCareRequest extends React.Component<{}, AppState > {
     <FormLabel>Choose pet</FormLabel>
     <FormInput onChangeText={(formInput) => {this.setState({pet: formInput})}}/>
     <FormLabel>From</FormLabel>
-    <FormInput onChangeText={(formInput) => {this.setState({fromDate: formInput})}}/>
+      <DatePicker
+        {...dataPickerStyles}
+        date={this.state.startDate}
+        onDateChange={(date) => {this.setState({startDate: date})}}
+      />
     <FormLabel>To</FormLabel>
-    <FormInput onChangeText={(formInput) => {this.setState({toDate: formInput})}}/>
-    <Button
-      title='Add offer'
-      backgroundColor='#138280'
-      onPress={this.submitForm}/>
+      <DatePicker
+        {...dataPickerStyles}
+        date={this.state.endDate}
+        onDateChange={(date) => {this.setState({endDate: date})}}
+      />
+      <Button
+        title='Add offer'
+        backgroundColor='#138280'
+        onPress={this.submitForm}/>
     </ScrollView>
   );
   }
