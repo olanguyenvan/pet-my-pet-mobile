@@ -29,7 +29,15 @@ export default class HostOfferListScreen extends React.Component<Navigable, Stat
         startDate: "2018-05-10",
         endDate: "2018-05-11",
         location: "Rynek Główny, Kraków",
-      }]
+      },
+      {
+        id: 2,
+        author: "Klaudzia",
+        startDate: "2018-05-15",
+        endDate: "2018-05-16",
+        location: "Prokocim, Kraków",
+      }
+      ]
     });
   }
 
@@ -47,9 +55,7 @@ export default class HostOfferListScreen extends React.Component<Navigable, Stat
               location={hostOffer.location}
             />
           )}
-
         </View>
-        {/*<HostOfferList hostOffers={this.state.hostOffers} navigation={this.props.navigation} />*/}
       </ScrollView>
     );
   }

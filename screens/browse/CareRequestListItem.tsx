@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import {Avatar} from "react-native-elements";
 
 export interface CareRequestProps{
   id: number;
@@ -9,32 +10,39 @@ export interface CareRequestProps{
   pets: string[];
 }
 
+const mockedAnimalAvatarsUrls = [
+  "https://cdn0.iconfinder.com/data/icons/animal-icons-flat/128/dog-256.png",
+  "https://usercontent2.hubstatic.com/6763071.jpg",
+  "https://pbs.twimg.com/profile_images/724175998426570752/FuNY_eUk_400x400.jpg",
+  "http://s3.party.pl/styl-zycia/dom/pies-czeka-na-karmienie-407889-article.jpg",
+  "https://littleheroes.pl/modules//smartblog/images/18-single-default.jpg",
+  "http://www.tapeta-jamnik-pies-krotkowlosy-szczeniak.na-pulpit.com/zdjecia/jamnik-pies-krotkowlosy-szczeniak.jpeg",
+];
+
 export default class CareRequestListItem extends React.Component<CareRequestProps> {
   render() {
-    return <View style={styles.listItemStyle}>
-      <Text style={styles.authorStyle}>{this.props.author}</Text>
-      <Text style={styles.dateStyle}>{this.props.startDate}</Text>
-      <Text style={styles.dateStyle}>{this.props.endDate}</Text>
-      <Text style={styles.dateStyle}>{this.props.pets}</Text>
+    return <View style={{flexDirection: 'row', flex: 1, alignItems: 'center', padding: 10}}>
+      <View style={{flex: 1, height: 100}}>
+        <Avatar
+          rounded
+          large
+          source={{uri: mockedAnimalAvatarsUrls[Math.floor(Math.random() * mockedAnimalAvatarsUrls.length)]}}
+          activeOpacity={0.7}
+        />
+      </View>
+      <View style={{flex: 2, height: 100}}>
+        <Text style={styles.container}>{this.props.author}</Text>
+        <Text style={styles.container}>{this.props.startDate} - {this.props.endDate}</Text>
+        <Text style={styles.container}>{this.props.pets}</Text>
+      </View>
     </View>
   }
 }
 
+
 const styles = StyleSheet.create({
-  authorStyle: {
-    fontSize: 13
-  },
-  dateStyle:{
-    fontSize: 11
-  },
-  listItemStyle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flex: 1,
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 5,
-    marginRight: 5
+  container: {
+    paddingBottom: 5,
   }
 });
+

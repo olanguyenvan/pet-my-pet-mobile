@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import {Avatar} from "react-native-elements";
 
 export interface HostOfferProps{
   id: number;
@@ -9,35 +10,38 @@ export interface HostOfferProps{
   location: string;
 }
 
+const mockedHostsAvatarsUrls = [
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSChBGiGQyE2GiBK6q1TE7yOVL8-fmUZnFOhIFCYDB4Ap9Zm8zTMg",
+  "https://www.shareicon.net/download/2016/05/24/769978_man_512x512.png",
+  "https://st2.depositphotos.com/1007566/12043/v/950/depositphotos_120433444-stock-illustration-man-male-avatar-young-icon.jpg",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdvr-vGX8tr-9SIhMb8mzAYiCgs7jPCfDaDtVT1ln2jJqrUC3dAQ",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO4ErGLQ_s1g97EaymktXAK7STd2BCNkRuKWmbBCGVqnfKYcju",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZJGMi4qn2c1-rgrn2InhqckkuBMS00lUwn6HEJ4GCKFB37-x4Xg",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg73Er_2y2eObBW0aYmQnm7LZJRjce3rH0jrvPnLldt7izMKOhtw"
+];
+
 export default class HostOfferListItem extends React.Component<HostOfferProps> {
   render() {
-    return <View style={styles.listItemStyle}>
-      <Text style={styles.authorStyle}>{this.props.author}</Text>
-      <Text style={styles.dateStyle}>{this.props.startDate}</Text>
-      <Text style={styles.dateStyle}>{this.props.endDate}</Text>
-      <Text style={styles.location}>{this.props.location}</Text>
+    return <View style={{flexDirection: 'row', flex: 1, alignItems: 'center', padding: 10}}>
+      <View style={{flex: 1, height: 100}}>
+        <Avatar
+          rounded
+          large
+          source={{uri: mockedHostsAvatarsUrls[Math.floor(Math.random() * mockedHostsAvatarsUrls.length)]}}
+          activeOpacity={0.7}
+        />
+      </View>
+      <View style={{flex: 2, height: 100}}>
+        <Text style={styles.container}>{this.props.author}</Text>
+        <Text style={styles.container}>{this.props.startDate} - {this.props.endDate}</Text>
+        <Text style={styles.container}>{this.props.location}</Text>
+      </View>
     </View>
   }
 }
 
 const styles = StyleSheet.create({
-  listItemStyle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flex: 1,
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 5,
-    marginRight: 5
-  },
-  authorStyle: {
-    fontSize: 13
-  },
-  dateStyle:{
-    fontSize: 11
-  },
-  location: {
-    fontSize: 18
+  container: {
+    paddingBottom: 5,
   }
 });
