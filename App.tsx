@@ -6,11 +6,15 @@ import ApolloClient, { gql } from 'apollo-boost'
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 
+Object.setPrototypeOf = Object.setPrototypeOf || function (obj, proto) {
+  obj.__proto__ = proto
+  return obj
+}
+
 export interface AppProps {
   skipLoadingScreen: boolean;
   isLoadingComplete: boolean;
 }
-
 
 export const apolloClient = new ApolloClient({
   uri: "https://pet-my-pet-server.herokuapp.com/",
@@ -22,8 +26,8 @@ export const apolloClient = new ApolloClient({
     });
   },
   onError: ({ graphQLErrors, networkError }) => {
-    console.error(graphQLErrors)
-    console.error(networkError)
+    console.log(graphQLErrors);
+    console.log(networkError);
   },
 });
 

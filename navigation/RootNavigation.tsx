@@ -1,21 +1,40 @@
 import React from 'react';
 import { Notifications } from 'expo';
-import { createSwitchNavigator } from 'react-navigation';
+import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
+import LoginScreen from '../screens/auth/LoginScreen';
+import RegisterScreen from '../screens/auth/RegisterScreen';
+import LoadingScreen from '../screens/LoadingScreen';
+import { Navigable } from '../types/Navigable';
+
+const AuthStack = createStackNavigator({
+  Login: LoginScreen,
+  Register: RegisterScreen
+},
+{
+  headerMode: 'none',
+  navigationOptions: {
+    headerVisible: false,
+  }
+});
 
 const AppNavigator = createSwitchNavigator({
   // You could add another route here for authentication.
   // Read more at https://reactnavigation.org/docs/en/auth-flow.html
+  Loading: LoadingScreen,
+  Auth: AuthStack,
   Main: MainTabNavigator,
+}, {
+  initialRouteName: 'Loading'
 });
 
 export default class RootNavigation extends React.Component {
   private _notificationSubscription;
 
   componentDidMount() {
-    this._notificationSubscription = this._registerForPushNotifications();
+    this._notificationSubscription = this._registerForPushNotifications();  
   }
 
   componentWillUnmount() {
