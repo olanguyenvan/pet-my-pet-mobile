@@ -11,13 +11,11 @@ export interface CareRequestProps{
 }
 
 export default class CareRequestListItem extends React.Component<CareRequestProps> {
-  
   render() {
     return <View>
-      
       <Text style={styles.authorStyle}>{this.props.author}</Text>
-      <Text style={styles.dateStyle}>{this.props.start}</Text>
-      <Text style={styles.dateStyle}>{this.props.end}</Text>
+      <Text style={styles.dateStyle}>14.03.2016</Text>
+      <Text style={styles.dateStyle}>16.05.2017</Text>
     </View>
   }
 }
