@@ -4,23 +4,14 @@ import { createBottomTabNavigator, createMaterialTopTabNavigator, createStackNav
 import TabBarIcon from '../components/TabBarIcon';
 import AddCareRequest from '../screens/add-offer/AddCareRequest';
 import AddHostOffer from '../screens/add-offer/AddHostOffer';
+import { noHeaderNavigationOptions, tabNavigatorStylings } from './tabNavigatorStylings';
 
 const AddOfferTopNavigator = createMaterialTopTabNavigator({
   HostOffers: AddHostOffer,
   CareRequests: AddCareRequest,
-}, {
-  tabBarOptions: {
-    activeTintColor: '#c900ff',
-    inactiveTintColor: '#3b00ff',
-    style: {
-      backgroundColor: '#fff',
-    },
-  },
-});
+}, tabNavigatorStylings);
 
-AddOfferTopNavigator.navigationOptions = {
-  headerStyle: {height: 0, elevation: 0},
-};
+AddOfferTopNavigator.navigationOptions = noHeaderNavigationOptions;
 
 const AddOfferStack = createStackNavigator({
   Home: AddOfferTopNavigator,
