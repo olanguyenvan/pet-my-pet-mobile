@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import {Avatar} from "react-native-elements";
+import {Avatar, Icon} from "react-native-elements";
 
 export interface CareRequestProps{
   id: number;
@@ -31,9 +31,16 @@ export default class CareRequestListItem extends React.Component<CareRequestProp
         />
       </View>
       <View style={{flex: 2, height: 100}}>
-        <Text style={styles.container}>{this.props.author}</Text>
-        <Text style={styles.container}>{this.props.startDate} - {this.props.endDate}</Text>
-        <Text style={styles.container}>{this.props.pets}</Text>
+        <Text style={styles.container}>df{this.props.author}</Text>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Icon name={"person"}/><Text style={styles.container}>{this.props.author}</Text>
+        </View>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Icon name={"date-range"}/><Text style={styles.container}>{this.props.startDate} - {this.props.endDate}</Text>
+        </View>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Icon name={"pets"}/><Text style={styles.container}>{this.props.pets}</Text>
+        </View>
       </View>
     </View>
   }
