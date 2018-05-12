@@ -1,14 +1,20 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
+import ProfileSettings from "./manage-profile/ProfileSettings";
 
-export default class SettingsScreen extends React.Component {
+interface Props {
+  navigation: any;
+}
+
+export default class SettingsScreen extends React.Component<Props, {} > {
   static navigationOptions = {
-    title: 'app.json',
+    title: 'Profile settings',
   };
 
   render() {
     /* Go ahead and delete ExpoConfigView and replace it with your
      * content, we just wanted to give you a quick view of your config */
-    return <ExpoConfigView />;
+    return <ProfileSettings
+          navigation={this.props.navigation}/>;
   }
 }

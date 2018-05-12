@@ -7,6 +7,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import AddPetForm from "../screens/manage-profile/AddPetForm";
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -42,6 +43,7 @@ LinksStack.navigationOptions = {
 
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
+  AddPetForm: AddPetForm,
 });
 
 SettingsStack.navigationOptions = {
