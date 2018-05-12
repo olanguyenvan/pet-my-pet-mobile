@@ -14,7 +14,12 @@ export const tabNavigatorStylings = {
       paddingTop: StatusBar.currentHeight,
     };
     return (
-      <MaterialTopTabBar {...props} style={styles}/>
+      <MaterialTopTabBar
+        {...props}
+        labelStyle={{fontSize: 18, fontWeight: 'bold'}}
+        upperCaseLabel={false}
+        style={styles}
+      />
     );
   },
   tabBarOptions: {
