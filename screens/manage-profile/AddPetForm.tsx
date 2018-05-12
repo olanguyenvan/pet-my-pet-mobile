@@ -1,6 +1,6 @@
 import React from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
-import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import { ScrollView, StyleSheet } from 'react-native';
+import { Button, FormInput, FormLabel } from 'react-native-elements'
 
 interface AppState {
   petName: string;
@@ -10,6 +10,10 @@ interface AppState {
 export default class AddPetForm extends React.Component<{}, AppState > {
   static navigationOptions = {
     title: 'Add Pet',
+    headerStyle: {
+      backgroundColor: '#fd7e5a',
+    },
+    headerTintColor: '#fff',
   };
 
   constructor(props){
@@ -37,8 +41,13 @@ export default class AddPetForm extends React.Component<{}, AppState > {
 
         <Button
           title='Add pet'
-          backgroundColor='#138280'
-          onPress={this.submitForm}/>
+          onPress={this.submitForm}
+          backgroundColor={'#fd7e5a'}
+          fontSize={14}
+          borderRadius={14}
+          buttonStyle={{padding: 10}}
+          containerViewStyle={{marginTop: 15, marginBottom: 15}}
+        />
       </ScrollView>
     );
   }

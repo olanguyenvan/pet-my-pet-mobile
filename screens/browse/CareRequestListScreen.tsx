@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { Navigable } from '../../types/Navigable';
-import {default as CareRequestListItem, CareRequestProps} from './CareRequestListItem';
+import { CareRequestProps, default as CareRequestListItem } from './CareRequestListItem';
 
 interface State {
   careRequests: CareRequestProps[];
@@ -55,5 +55,6 @@ export default class CareRequestListScreen extends React.Component<Navigable, St
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
 });

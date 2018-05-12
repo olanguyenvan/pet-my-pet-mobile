@@ -1,8 +1,8 @@
 import React from 'react';
-import {Picker, ScrollView, StyleSheet, View} from 'react-native';
-import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import {Picker,ScrollView, StyleSheet, View} from 'react-native';
+import { Button,  FormInput, FormLabel } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
-import {dataPickerStyles} from './DataPickerConfig'
+import { dataPickerStyles } from './DataPickerConfig'
 
 
 interface AppState {
@@ -49,18 +49,17 @@ export default class AddCareRequest extends React.Component<{}, AppState > {
     return (
       <ScrollView style={styles.container}>
 
-        <FormLabel>From</FormLabel>
-          <DatePicker
-            {...dataPickerStyles}
-            date={this.state.startDate}
-            onDateChange={(date) => {this.setState({startDate: date})}}
-          />
-        <FormLabel>To</FormLabel>
-        <DatePicker
-          {...dataPickerStyles}
-          date={this.state.endDate}
-          onDateChange={(date) => {this.setState({endDate: date})}}
-        />
+    <FormLabel>From</FormLabel>
+      <DatePicker
+        {...dataPickerStyles}
+        date={this.state.startDate}
+        onDateChange={(date) => {this.setState({startDate: date})}}
+      />
+    <FormLabel>To</FormLabel>
+      <DatePicker
+        {...dataPickerStyles}
+        date={this.state.endDate}
+        onDateChange={(date) => {this.setState({endDate: date})}}/>
         <View style={{paddingLeft: 10}}>
           <Picker
             selectedValue={this.state.petId}
@@ -72,11 +71,15 @@ export default class AddCareRequest extends React.Component<{}, AppState > {
           </Picker>
         </View>
 
-        <Button
-          title='Add offer'
-          backgroundColor='#138280'
-          onPress={this.submitForm}/>
-      </ScrollView>
+      <Button
+        title='Add offer'
+
+        onPress={this.submitForm}backgroundColor={'#FC9842'}
+        fontSize={14}
+        borderRadius={14}
+        buttonStyle={{padding: 10}}
+        containerViewStyle={{marginTop: 15, marginBottom: 15}}/>
+    </ScrollView>
   );
   }
 }

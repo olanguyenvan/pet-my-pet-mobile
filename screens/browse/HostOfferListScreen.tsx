@@ -1,8 +1,8 @@
 import React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import { Navigable } from '../../types/Navigable';
-import {default as HostOfferListItem, HostOfferProps} from './HostOfferListItem';
+import { default as HostOfferListItem, HostOfferProps } from './HostOfferListItem';
 
 interface State {
   hostOffers: HostOfferProps[];
@@ -41,9 +41,19 @@ export default class HostOfferListScreen extends React.Component<Navigable, Stat
     });
   }
 
+  showMap = () => this.props.navigation.navigate('HostOffersMap', {offers: this.state.hostOffers});
+
   render() {
     return (
       <ScrollView style={styles.container}>
+        <Button
+          onPress={this.showMap}
+          containerViewStyle={{marginTop: 15, marginBottom: 15}}
+          fontSize={14}
+          borderRadius={14}
+          backgroundColor={'#FE5F75'}
+          buttonStyle={{padding: 10}}
+          title='Show map'/>
         <View>
           { this.state.hostOffers.map(
             hostOffer => <HostOfferListItem
@@ -64,5 +74,6 @@ export default class HostOfferListScreen extends React.Component<Navigable, Stat
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
 });
