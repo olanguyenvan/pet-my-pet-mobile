@@ -15,10 +15,6 @@ interface Props extends Navigable {
 export default class ProfileSettings extends React.Component<Props, AppState> {
   static navigationOptions = {
     title: 'Profile settings',
-    headerStyle: {
-      backgroundColor: '#fd7e5a',
-    },
-    headerTintColor: '#fff',
   };
 
   constructor(props) {

@@ -12,6 +12,13 @@ import AddOfferStack from './AddOfferStack';
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
   AddPetForm: AddPetForm,
+}, {
+  navigationOptions: {
+    headerStyle: {
+      backgroundColor: '#fd7e5a',
+    },
+    headerTintColor: '#fff',
+  }
 });
 
 SettingsStack.navigationOptions = {
