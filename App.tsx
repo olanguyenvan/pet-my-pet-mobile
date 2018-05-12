@@ -34,13 +34,6 @@ export default class App extends React.Component<AppProps> {
   };
 
   render() {
-      apolloClient.query({
-        query: gql`query { hello { name } }`,
-        fetchPolicy: 'network-only'
-      }).then(resp => {
-        console.log("hello: ", resp.data['hello'].name)
-      });
-
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading

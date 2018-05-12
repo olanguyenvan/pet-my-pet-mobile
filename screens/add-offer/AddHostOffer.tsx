@@ -1,11 +1,12 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text} from 'react-native';
 import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import DatePicker from 'react-native-datepicker'
 
 interface AppState {
   petType: string,
-  fromDate: any,
-  toDate: any,
+  startDate: string,
+  endDate: string,
   location: any,
 }
 
@@ -17,10 +18,11 @@ export default class AddHostOffer extends React.Component<{}, AppState > {
 
   constructor(props){
     super(props);
+    let today = new Date().toISOString().split('T')[0];
     this.state = {
       petType: null,
-      fromDate: null,
-      toDate: null,
+      startDate: today,
+      endDate: today,
       location: null,
     };
     this.submitForm = this.submitForm.bind(this)
@@ -28,20 +30,47 @@ export default class AddHostOffer extends React.Component<{}, AppState > {
 
   submitForm(){
     // TODO: api call to create offer
-    console.log(this.state.petType, this.state.fromDate, this.state.toDate, this.state.location)
-    // console.log(this.state.petName, this.state.petType)
+    console.log(this.state.petType, this.state.startDate, this.state.endDate, this.state.location)
   }
 
   render() {
+    const dataPickerStyles = {
+      style:{width: 200},
+      mode: "date",
+      format:"YYYY-MM-DD",
+      confirmBtnText:"Confirm",
+      cancelBtnText:"Cancel",
+      customStyles: {
+        dateIcon: {
+          position: 'absolute',
+          left: 0,
+          top: 4,
+          marginLeft: 15
+        },
+        dateInput: {
+          marginLeft: 50
+        }
+      },
+    };
+
     return (
       <ScrollView style={styles.container}>
 
         <FormLabel>Pet name</FormLabel>
         <FormInput onChangeText={(formInput) => {this.setState({petType: formInput})}}/>
         <FormLabel>From</FormLabel>
-        <FormInput onChangeText={(formInput) => {this.setState({fromDate: formInput})}}/>
+        <DatePicker
+          {...dataPickerStyles}
+          date={this.state.startDate}
+          onDateChange={(date) => {this.setState({startDate: date})}}
+        />
+
         <FormLabel>To</FormLabel>
-        <FormInput onChangeText={(formInput) => {this.setState({toDate: formInput})}}/>
+        <DatePicker
+          {...dataPickerStyles}
+          date={this.state.endDate}
+          onDateChange={(date) => {this.setState({endDate: date})}}
+        />
         <FormLabel>Location</FormLabel>
         <FormInput onChangeText={(formInput) => {this.setState({location: formInput})}}/>
 
